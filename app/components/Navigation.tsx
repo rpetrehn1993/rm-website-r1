@@ -227,7 +227,7 @@ export default function Navigation() {
                 width={117}
                 height={95}
                 priority
-                className={`transition-all duration-200 ${!isHomePage ? 'hover:opacity-80' : ''} [filter:brightness(0)_saturate(100%)_invert(48%)_sepia(98%)_saturate(1864%)_hue-rotate(353deg)_brightness(98%)_contrast(98%)]`}
+                className={!isHomePage ? 'hover:brightness-0 hover:saturate-100 hover:[filter:brightness(0)_saturate(100%)_invert(19%)_sepia(98%)_saturate(1864%)_hue-rotate(353deg)_brightness(98%)_contrast(98%)] transition-all duration-200' : ''}
               />
             </div>
             {/* Animated logo container */}

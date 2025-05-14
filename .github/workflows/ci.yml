@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, 'feature/**' ]
   pull_request:
     branches: [ main, develop ]
 
@@ -22,14 +22,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
-    - name: Type check
-      run: npm run type-check
-    
-    - name: Lint
-      run: npm run lint
-    
-    - name: Run tests
-      run: npm test
-    
-    - name: Build
-      run: npm run build 
+    - name: Run checks
+      run: |
+        npm run type-check
+        npm run lint
+        npm test
+        npm run build 

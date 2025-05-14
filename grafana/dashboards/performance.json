@@ -1,0 +1,163 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "title": "Core Web Vitals",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Largest Contentful Paint",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.75, sum(rate(web_vitals_lcp_bucket[5m])) by (le))",
+              "legendFormat": "75th percentile"
+            }
+          ],
+          "thresholds": [
+            {
+              "color": "red",
+              "value": 2500
+            },
+            {
+              "color": "yellow",
+              "value": 2000
+            }
+          ]
+        },
+        {
+          "title": "First Input Delay",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.75, sum(rate(web_vitals_fid_bucket[5m])) by (le))",
+              "legendFormat": "75th percentile"
+            }
+          ],
+          "thresholds": [
+            {
+              "color": "red",
+              "value": 100
+            },
+            {
+              "color": "yellow",
+              "value": 50
+            }
+          ]
+        },
+        {
+          "title": "Cumulative Layout Shift",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.75, sum(rate(web_vitals_cls_bucket[5m])) by (le))",
+              "legendFormat": "75th percentile"
+            }
+          ],
+          "thresholds": [
+            {
+              "color": "red",
+              "value": 0.25
+            },
+            {
+              "color": "yellow",
+              "value": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Resource Loading",
+      "type": "row",
+      "panels": [
+        {
+          "title": "Image Loading Time",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.75, sum(rate(image_load_duration_seconds_bucket[5m])) by (le))",
+              "legendFormat": "75th percentile"
+            }
+          ]
+        },
+        {
+          "title": "Video Loading Time",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.75, sum(rate(video_load_duration_seconds_bucket[5m])) by (le))",
+              "legendFormat": "75th percentile"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Error Rates",
+      "type": "row",
+      "panels": [
+        {
+          "title": "JavaScript Errors",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(rate(js_errors_total[5m]))",
+              "legendFormat": "errors/sec"
+            }
+          ]
+        },
+        {
+          "title": "API Errors",
+          "type": "timeseries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "sum(rate(api_errors_total[5m]))",
+              "legendFormat": "errors/sec"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 30,
+  "style": "dark",
+  "tags": ["performance", "web-vitals"],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Portfolio Performance Dashboard",
+  "uid": "portfolio-performance",
+  "version": 1
+} 

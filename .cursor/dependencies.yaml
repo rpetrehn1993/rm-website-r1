@@ -1,0 +1,219 @@
+# Dependencies tracking for RM Website
+# Format:
+# - component: Name of the component/feature
+#   files: List of files that make up this component
+#   dependencies: Components this depends on
+#   dependents: Components that depend on this
+#   assets: Assets used by this component
+#   functions: Functions/methods used by this component
+#   notes: Any additional notes about dependencies
+
+components:
+  - name: Navigation
+    files:
+      - app/components/Navigation.tsx
+      - app/components/__tests__/Navigation.test.tsx
+    dependencies:
+      - ThemeProvider
+      - Analytics
+    dependents:
+      - Layout
+      - All pages
+    assets:
+      - public/images/logo.svg
+    functions:
+      - usePathname
+      - useTheme
+      - analytics.trackEvent
+    notes: |
+      Navigation is a core component used across all pages.
+      Changes to navigation structure affect all pages.
+      Theme toggle functionality is used by all pages.
+
+  - name: ContactForm
+    files:
+      - app/components/ContactForm.tsx
+      - app/components/__tests__/ContactForm.test.tsx
+    dependencies:
+      - ErrorBoundary
+      - Analytics
+    dependents:
+      - ContactPage
+    assets: []
+    functions:
+      - analytics.trackEvent
+    notes: |
+      Form validation and submission handling.
+      Error handling through ErrorBoundary.
+      Analytics tracking for form submissions.
+
+  - name: ErrorBoundary
+    files:
+      - app/components/ErrorBoundary.tsx
+      - app/components/__tests__/ErrorBoundary.test.tsx
+    dependencies:
+      - Analytics
+    dependents:
+      - ContactForm
+      - All pages
+    assets: []
+    functions:
+      - analytics.trackEvent
+    notes: |
+      Global error handling component.
+      Used by all components that need error handling.
+      Tracks errors through analytics.
+
+  - name: ProjectCard
+    files:
+      - app/components/ProjectCard.tsx
+      - app/components/__tests__/ProjectCard.test.tsx
+    dependencies:
+      - Image
+      - Link
+    dependents:
+      - WorkPage
+      - ArchivePage
+    assets:
+      - public/images/projects/*
+    functions: []
+    notes: |
+      Displays project information.
+      Used in work and archive pages.
+      Depends on project images.
+
+  - name: TestUtils
+    files:
+      - app/test-utils.tsx
+    dependencies: []
+    dependents:
+      - All test files
+    assets: []
+    functions:
+      - testAccessibility
+      - renderWithAccessibility
+    notes: |
+      Shared testing utilities.
+      Used by all component tests.
+      Provides accessibility testing helpers.
+
+assets:
+  - name: food-culture-preview
+    type: video
+    path: public/videos/food-culture-preview.mp4
+    used_by:
+      - WorkPage
+    dependencies: []
+    notes: |
+      Placeholder video for food culture project.
+      Will be replaced with actual content.
+
+  - name: documentary-preview
+    type: gif
+    path: public/gifs/documentary-preview.gif
+    used_by:
+      - WorkPage
+    dependencies: []
+    notes: |
+      Placeholder GIF for documentary project.
+      Will be replaced with actual content.
+
+  - name: art-collection-alt
+    type: image
+    path: public/images/home/art-collection-alt.jpg
+    used_by:
+      - HomePage
+    dependencies: []
+    notes: |
+      Placeholder image for art collection.
+      Will be replaced with actual content.
+
+pages:
+  - name: HomePage
+    path: app/page.tsx
+    components:
+      - Navigation
+      - ProjectCard
+    assets:
+      - art-collection-alt
+    dependencies:
+      - Layout
+    notes: |
+      Main landing page.
+      Uses navigation and project cards.
+      Displays featured projects.
+
+  - name: WorkPage
+    path: app/work/page.tsx
+    components:
+      - Navigation
+      - ProjectCard
+    assets:
+      - food-culture-preview
+      - documentary-preview
+    dependencies:
+      - Layout
+    notes: |
+      Portfolio work page.
+      Displays all projects.
+      Uses project cards for each project.
+
+  - name: ContactPage
+    path: app/contact/page.tsx
+    components:
+      - Navigation
+      - ContactForm
+      - ErrorBoundary
+    dependencies:
+      - Layout
+    notes: |
+      Contact page with form.
+      Uses error boundary for form errors.
+      Tracks form submissions.
+
+  - name: ArchivePage
+    path: app/archive/page.tsx
+    components:
+      - Navigation
+      - ProjectCard
+    dependencies:
+      - Layout
+    notes: |
+      Archive of all projects.
+      Uses project cards.
+      Similar to work page but with different filtering.
+
+# Update this section whenever changes are made
+last_updated: "2024-05-13"
+changes:
+  - date: "2024-05-13"
+    description: "Updated placeholder assets to use proper file formats"
+    affected_components:
+      - ProjectCard
+    affected_assets:
+      - food-culture-preview
+      - documentary-preview
+      - art-collection-alt
+    new_dependencies: []
+    broken_dependencies: []
+  - date: "2024-05-13"
+    description: "Fixed placeholder assets to use proper SVG format"
+    affected_components:
+      - ProjectCard
+    affected_assets:
+      - food-culture-preview
+      - documentary-preview
+      - art-collection-alt
+    new_dependencies: []
+    broken_dependencies: []
+  - date: "2024-05-13"
+    description: "Initial dependency tracking setup"
+    affected_components:
+      - Navigation
+      - ContactForm
+      - ErrorBoundary
+      - ProjectCard
+    affected_assets:
+      - food-culture-preview
+      - documentary-preview
+      - art-collection-alt 

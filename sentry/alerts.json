@@ -1,0 +1,108 @@
+{
+  "alerts": [
+    {
+      "name": "High Error Rate Alert",
+      "conditions": [
+        {
+          "id": "high_error_rate",
+          "name": "Error rate is above 1%",
+          "aggregate": "percentage",
+          "query": "error",
+          "threshold": 1,
+          "timeWindow": 300,
+          "frequency": 60
+        }
+      ],
+      "actions": [
+        {
+          "type": "email",
+          "targetType": "team",
+          "targetIdentifier": "engineering"
+        },
+        {
+          "type": "slack",
+          "targetType": "channel",
+          "targetIdentifier": "#alerts"
+        }
+      ]
+    },
+    {
+      "name": "Critical Error Alert",
+      "conditions": [
+        {
+          "id": "critical_errors",
+          "name": "Critical errors in last 5 minutes",
+          "aggregate": "count",
+          "query": "level:error",
+          "threshold": 5,
+          "timeWindow": 300,
+          "frequency": 60
+        }
+      ],
+      "actions": [
+        {
+          "type": "email",
+          "targetType": "team",
+          "targetIdentifier": "oncall"
+        },
+        {
+          "type": "slack",
+          "targetType": "channel",
+          "targetIdentifier": "#critical-alerts"
+        }
+      ]
+    },
+    {
+      "name": "Performance Degradation Alert",
+      "conditions": [
+        {
+          "id": "slow_transactions",
+          "name": "Transaction duration above threshold",
+          "aggregate": "p95",
+          "query": "transaction.duration",
+          "threshold": 2000,
+          "timeWindow": 300,
+          "frequency": 60
+        }
+      ],
+      "actions": [
+        {
+          "type": "email",
+          "targetType": "team",
+          "targetIdentifier": "performance"
+        },
+        {
+          "type": "slack",
+          "targetType": "channel",
+          "targetIdentifier": "#performance-alerts"
+        }
+      ]
+    },
+    {
+      "name": "Resource Loading Error Alert",
+      "conditions": [
+        {
+          "id": "resource_errors",
+          "name": "Resource loading errors",
+          "aggregate": "count",
+          "query": "type:resource",
+          "threshold": 10,
+          "timeWindow": 300,
+          "frequency": 60
+        }
+      ],
+      "actions": [
+        {
+          "type": "email",
+          "targetType": "team",
+          "targetIdentifier": "frontend"
+        },
+        {
+          "type": "slack",
+          "targetType": "channel",
+          "targetIdentifier": "#frontend-alerts"
+        }
+      ]
+    }
+  ]
+} 

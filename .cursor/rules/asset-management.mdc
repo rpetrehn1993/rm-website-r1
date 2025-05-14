@@ -1,0 +1,139 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Asset Management Rule
+
+## Asset Types and Locations
+
+### Images
+- **Hero Images**
+  - Location: `/public/images/heroes/`
+  - Format: WebP with JPEG fallback
+  - Size: 1920x1080px
+  - Naming: `{section}-hero.{ext}`
+
+- **Project Images**
+  - Location: `/public/images/projects/`
+  - Format: WebP with JPEG fallback
+  - Size: 1200x800px
+  - Naming: `{project-name}-{type}.{ext}`
+
+- **About Images**
+  - Location: `/public/images/about/`
+  - Format: WebP with JPEG fallback
+  - Size: 800x600px
+  - Naming: `{section}-{type}.{ext}`
+
+- **Shared Images**
+  - Location: `/public/images/shared/`
+  - Format: WebP with JPEG fallback
+  - Size: Varies by use
+  - Naming: `{purpose}-{type}.{ext}`
+
+### Videos
+- **Location**: `/public/videos/`
+- **Format**: MP4 (H.264)
+- **Resolution**: 1920x1080
+- **Naming**: `{project-name}-{type}.mp4`
+
+### GIFs
+- **Location**: `/public/gifs/`
+- **Format**: GIF
+- **Max Size**: 5MB
+- **Naming**: `{project-name}-{type}.gif`
+
+## Asset Verification Checklist
+
+Before using any asset, verify:
+1. [ ] Asset exists in correct location
+2. [ ] Asset follows naming convention
+3. [ ] Asset meets size/format requirements
+4. [ ] Asset is optimized
+5. [ ] Asset has proper fallbacks
+6. [ ] Asset is referenced correctly in code
+
+## Asset Optimization
+
+### Images
+- Use WebP format with JPEG fallback
+- Implement responsive images
+- Use proper image dimensions
+- Implement lazy loading
+- Use appropriate compression
+
+### Videos
+- Use H.264 codec
+- Implement proper compression
+- Use appropriate resolution
+- Consider bandwidth usage
+- Implement lazy loading
+
+### GIFs
+- Optimize for size
+- Consider using video instead
+- Use appropriate dimensions
+- Implement lazy loading
+
+## Implementation Example
+
+```tsx
+// Good Example
+import Image from 'next/image';
+
+export function ProjectImage({ name, type }) {
+  return (
+    <Image
+      src={`/images/projects/${name}-${type}.webp`}
+      alt={`${name} ${type}`}
+      width={1200}
+      height={800}
+      loading="lazy"
+      className="rounded-lg"
+    />
+  );
+}
+
+// Bad Example
+export function ProjectImage({ name, type }) {
+  return (
+    <img 
+      src={`/images/${name}.jpg`} // Wrong path, wrong format
+      alt={name}
+      className="rounded-lg"
+    />
+  );
+}
+```
+
+## Error Handling
+
+1. **Missing Assets**
+   - Log error to console
+   - Show fallback image
+   - Report to monitoring system
+
+2. **Invalid Assets**
+   - Validate on build
+   - Show error in development
+   - Use fallback in production
+
+3. **Performance Issues**
+   - Monitor load times
+   - Implement proper caching
+   - Use CDN when available
+
+## Maintenance
+
+1. **Regular Checks**
+   - Verify all assets exist
+   - Check for broken links
+   - Validate optimization
+   - Update as needed
+
+2. **Documentation**
+   - Keep asset list updated
+   - Document changes
+   - Track versions
+   - Maintain fallbacks

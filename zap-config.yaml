@@ -1,0 +1,50 @@
+env:
+  contexts:
+    - name: "Reagan Petrehn Portfolio"
+      urls:
+        - http://localhost:3000
+      includePaths:
+        - ".*"
+      excludePaths:
+        - ".*\\.(jpg|jpeg|png|gif|css|js)$"
+      authentication:
+        method: "none"
+      users: []
+      technology:
+        include: []
+        exclude: []
+      alertThreshold: "MEDIUM"
+      riskThreshold: "MEDIUM"
+
+jobs:
+  - name: "Active Scan"
+    parameters:
+      context: "Reagan Petrehn Portfolio"
+      target: "http://localhost:3000"
+      maxDuration: 30
+      maxChildren: 10
+      recurse: true
+      inScopeOnly: true
+      scanAsUser: false
+      raiseAlert: true
+      raiseAlertThreshold: "MEDIUM"
+      defaultPolicy: "Default Policy"
+
+  - name: "Spider"
+    parameters:
+      context: "Reagan Petrehn Portfolio"
+      target: "http://localhost:3000"
+      maxDuration: 30
+      maxChildren: 10
+      recurse: true
+      inScopeOnly: true
+      scanAsUser: false
+
+reports:
+  - name: "Security Report"
+    template: "traditional-html"
+    reportDir: "security-reports"
+    reportFile: "security-report.html"
+    reportTitle: "Security Report - Reagan Petrehn Portfolio"
+    reportDescription: "Security scan results for Reagan Petrehn Portfolio"
+    displayReport: true 

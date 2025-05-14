@@ -1,0 +1,121 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Style Guide Reference Rule
+
+## When to Reference the Style Guide
+
+Before making any design or development changes, always refer to the style guide in `.cursor/rules/STYLE_GUIDE.md`. This includes:
+
+1. **Component Development**
+   - Before creating new components
+   - When modifying existing components
+   - When adding new features to components
+
+2. **Styling Changes**
+   - Before adding new styles
+   - When modifying existing styles
+   - When implementing responsive design
+
+3. **Layout Modifications**
+   - Before changing page layouts
+   - When adjusting spacing
+   - When implementing new sections
+
+4. **Asset Integration**
+   - Before adding new images
+   - When implementing icons
+   - When creating new visual elements
+
+## Reference Process
+
+1. **Check Typography**
+   - Verify font families
+   - Confirm font sizes
+   - Check font weights
+   - Validate line heights
+
+2. **Verify Colors**
+   - Use exact color codes
+   - Check color contrast ratios
+   - Validate color usage context
+
+3. **Validate Spacing**
+   - Use defined spacing units
+   - Check component margins
+   - Verify padding values
+
+4. **Confirm Layout**
+   - Follow container guidelines
+   - Use grid system correctly
+   - Implement responsive breakpoints
+
+5. **Check Components**
+   - Follow component specifications
+   - Use defined variants
+   - Implement correct states
+
+6. **Verify Animations**
+   - Use defined durations
+   - Follow easing guidelines
+   - Implement correct properties
+
+## Implementation Checklist
+
+Before implementing any change, verify:
+
+- [ ] Typography matches style guide
+- [ ] Colors are from the defined palette
+- [ ] Spacing follows the system
+- [ ] Layout adheres to guidelines
+- [ ] Components follow specifications
+- [ ] Animations match defined patterns
+- [ ] Responsive design follows breakpoints
+- [ ] Accessibility requirements are met
+
+## Documentation
+
+When making changes:
+1. Document any deviations from the style guide
+2. Note any new patterns that should be added
+3. Update the style guide if new patterns are established
+
+## Example
+
+```tsx
+// Good Example
+const Button = ({ variant = 'primary', children }) => {
+  // Following style guide for colors, spacing, and typography
+  return (
+    <button 
+      className={`
+        px-6 py-3 // Following spacing guidelines
+        ${variant === 'primary' ? 'bg-[#1E1E1E] text-white' : 'border border-[#1E1E1E] text-[#1E1E1E]'}
+        rounded // Following border radius guidelines
+        transition-all duration-300 ease-out // Following animation guidelines
+      `}
+    >
+      {children}
+    </button>
+  );
+};
+
+// Bad Example
+const Button = ({ variant = 'primary', children }) => {
+  // Not following style guide
+  return (
+    <button 
+      className={`
+        p-4 // Incorrect spacing
+        ${variant === 'primary' ? 'bg-black text-white' : 'border border-gray-800 text-gray-800'}
+        rounded-lg // Incorrect border radius
+        transition // Missing duration and easing
+      `}
+    >
+      {children}
+    </button>
+  );
+};
+```

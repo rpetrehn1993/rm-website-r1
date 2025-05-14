@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.0049 23.3345">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: DegularVariable-DisplayMedium, 'Degular Variable';
+        font-size: 22.5018px;
+        font-variation-settings: 'opsz' 1000, 'slnt' 0, 'wght' 360;
+        font-weight: 500;
+      }
+
+      .cls-2 {
+        letter-spacing: -.01em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer_1">
+    <text class="cls-1" transform="translate(.4053 18.0015)"><tspan x="0" y="0">ABO</tspan><tspan class="cls-2" x="38.8154" y="0">U</tspan><tspan x="51.6416" y="0">T</tspan></text>
+  </g>
+</svg>

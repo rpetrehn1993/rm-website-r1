@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Auto-Approval Rules
+
+## Allowed Changes
+1. Performance & Security improvements
+2. SEO optimizations
+3. Analytics implementation
+4. Legal compliance updates
+5. Asset management
+6. Documentation updates
+7. Testing infrastructure
+8. Error handling
+9. Accessibility improvements
+
+## Change Guidelines
+1. Follow style guide
+2. Maintain existing patterns
+3. Add appropriate tests
+4. Update documentation
+5. Include error handling
+6. Add performance monitoring
+7. Implement security best practices
+
+## Implementation Process
+1. Create necessary files
+2. Add required dependencies
+3. Implement features
+4. Add tests
+5. Update documentation
+6. Verify changes
+7. Monitor performance
+
+## Monitoring
+1. Track changes in console
+2. Log important updates
+3. Report any issues
+4. Document decisions

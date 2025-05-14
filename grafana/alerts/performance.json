@@ -1,0 +1,132 @@
+{
+  "alerts": [
+    {
+      "name": "High LCP Alert",
+      "conditions": [
+        {
+          "evaluator": {
+            "params": [2500],
+            "type": "gt"
+          },
+          "operator": {
+            "type": "and"
+          },
+          "query": {
+            "params": ["A", "5m", "now"]
+          },
+          "reducer": {
+            "params": [],
+            "type": "avg"
+          },
+          "type": "query"
+        }
+      ],
+      "executionErrorState": "alerting",
+      "frequency": "1m",
+      "handler": 1,
+      "message": "Largest Contentful Paint is above 2.5s threshold",
+      "noDataState": "no_data",
+      "notifications": [
+        {
+          "uid": "performance-team"
+        }
+      ]
+    },
+    {
+      "name": "High FID Alert",
+      "conditions": [
+        {
+          "evaluator": {
+            "params": [100],
+            "type": "gt"
+          },
+          "operator": {
+            "type": "and"
+          },
+          "query": {
+            "params": ["B", "5m", "now"]
+          },
+          "reducer": {
+            "params": [],
+            "type": "avg"
+          },
+          "type": "query"
+        }
+      ],
+      "executionErrorState": "alerting",
+      "frequency": "1m",
+      "handler": 1,
+      "message": "First Input Delay is above 100ms threshold",
+      "noDataState": "no_data",
+      "notifications": [
+        {
+          "uid": "performance-team"
+        }
+      ]
+    },
+    {
+      "name": "High CLS Alert",
+      "conditions": [
+        {
+          "evaluator": {
+            "params": [0.25],
+            "type": "gt"
+          },
+          "operator": {
+            "type": "and"
+          },
+          "query": {
+            "params": ["C", "5m", "now"]
+          },
+          "reducer": {
+            "params": [],
+            "type": "avg"
+          },
+          "type": "query"
+        }
+      ],
+      "executionErrorState": "alerting",
+      "frequency": "1m",
+      "handler": 1,
+      "message": "Cumulative Layout Shift is above 0.25 threshold",
+      "noDataState": "no_data",
+      "notifications": [
+        {
+          "uid": "performance-team"
+        }
+      ]
+    },
+    {
+      "name": "Slow Resource Loading Alert",
+      "conditions": [
+        {
+          "evaluator": {
+            "params": [2000],
+            "type": "gt"
+          },
+          "operator": {
+            "type": "and"
+          },
+          "query": {
+            "params": ["D", "5m", "now"]
+          },
+          "reducer": {
+            "params": [],
+            "type": "avg"
+          },
+          "type": "query"
+        }
+      ],
+      "executionErrorState": "alerting",
+      "frequency": "1m",
+      "handler": 1,
+      "message": "Resource loading time is above 2s threshold",
+      "noDataState": "no_data",
+      "notifications": [
+        {
+          "uid": "performance-team"
+        }
+      ]
+    }
+  ]
+} 

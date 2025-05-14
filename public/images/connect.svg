@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.8037 23.3345">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: DegularVariable-DisplayMedium, 'Degular Variable';
+        font-size: 22.5018px;
+        font-variation-settings: 'opsz' 1000, 'slnt' 0, 'wght' 360;
+        font-weight: 500;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: -.023em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.004em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer_1">
+    <text class="cls-1" transform="translate(0 18.0015)"><tspan x="0" y="0">CONN</tspan><tspan class="cls-4" x="54.7236" y="0">E</tspan><tspan class="cls-3" x="65.6367" y="0">C</tspan><tspan class="cls-2" x="78.8447" y="0">T</tspan></text>
+  </g>
+</svg>

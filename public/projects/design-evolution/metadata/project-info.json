@@ -1,0 +1,44 @@
+{
+  "title": "Design Evolution",
+  "description": "The journey of brand transformation and visual identity development",
+  "year": "2024",
+  "category": "Branding",
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/main.jpg",
+        "alt": "Design Evolution Main Image",
+        "type": "image",
+        "format": "jpg"
+      },
+      "hover": {
+        "type": "gif",
+        "assets": [
+          {
+            "path": "hero/hover/evolution.gif",
+            "alt": "Design Evolution Animation",
+            "type": "gif",
+            "format": "gif"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/brand-1.jpg",
+          "alt": "Brand Evolution Stage 1",
+          "type": "image",
+          "format": "jpg"
+        },
+        {
+          "path": "content/images/brand-2.jpg",
+          "alt": "Brand Evolution Stage 2",
+          "type": "image",
+          "format": "jpg"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+} 

@@ -1,0 +1,44 @@
+{
+  "title": "Creative Process",
+  "description": "Exploring the methodology and inspiration behind creative work",
+  "year": "2024",
+  "category": "Process",
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/main.jpg",
+        "alt": "Creative Process Main Image",
+        "type": "image",
+        "format": "jpg"
+      },
+      "hover": {
+        "type": "gif",
+        "assets": [
+          {
+            "path": "hero/hover/process.gif",
+            "alt": "Creative Process Animation",
+            "type": "gif",
+            "format": "gif"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/process-1.jpg",
+          "alt": "Creative Process Step 1",
+          "type": "image",
+          "format": "jpg"
+        },
+        {
+          "path": "content/images/process-2.jpg",
+          "alt": "Creative Process Step 2",
+          "type": "image",
+          "format": "jpg"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+} 

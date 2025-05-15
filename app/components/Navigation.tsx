@@ -8,6 +8,142 @@ import * as Sentry from '@sentry/nextjs';
 import VimeoPlayer from './VimeoPlayer';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Connect and About panels with animation
+const ConnectPanel = ({ onClose }: { onClose: () => void }) => (
+  <motion.div
+    initial={{ opacity: 1 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 1 }}
+    transition={{ duration: 0.5, ease: 'linear' }}
+    className="fixed inset-0 flex flex-col items-center justify-center px-4 bg-[#A09583] z-[100]"
+  >
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
+      className="absolute top-[91px] right-[19px] z-[100] text-white font-['Times_New_Roman'] italic text-[0.64rem] underline hover:opacity-80 transition-all duration-300"
+      onClick={onClose}
+    >
+      BACK →
+    </motion.button>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.56, delay: 0.25, ease: 'easeInOut' } }}
+      exit={{ opacity: 0, transition: { duration: 0.36, delay: 0.1, ease: 'easeInOut' } }}
+    >
+      <div className="w-full max-w-xl flex flex-col items-center">
+        <h2 className="text-white font-degular text-3xl mb-6 text-center">Connect</h2>
+        <div className="text-white font-['Times_New_Roman'] italic text-lg text-center space-y-4">
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">Email</span>
+            <a href="mailto:hello@reaganmatthew.com" className="underline">hello@reaganmatthew.com</a>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">Location</span>
+            <span>New York City</span>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">Instagram</span>
+            <a href="https://instagram.com/reaganmatthew" target="_blank" rel="noopener noreferrer" className="underline">@reaganmatthew</a>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">LinkedIn</span>
+            <a href="https://linkedin.com/in/reaganmatthew" target="_blank" rel="noopener noreferrer" className="underline">reaganmatthew</a>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
+const AboutPanel = ({ onClose }: { onClose: () => void }) => (
+  <motion.div
+    initial={{ opacity: 1 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 1 }}
+    transition={{ duration: 0.5, ease: 'linear' }}
+    className="fixed inset-0 flex flex-col items-center justify-center px-4 bg-[#A09583] z-[100]"
+  >
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
+      className="absolute top-[91px] right-[19px] z-[100] text-white font-['Times_New_Roman'] italic text-[0.64rem] underline hover:opacity-80 transition-all duration-300"
+      onClick={onClose}
+    >
+      BACK →
+    </motion.button>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.56, delay: 0.25, ease: 'easeInOut' } }}
+      exit={{ opacity: 0, transition: { duration: 0.36, delay: 0.1, ease: 'easeInOut' } }}
+    >
+      <div className="w-full max-w-xl flex flex-col items-center">
+        <h2 className="text-white font-degular text-3xl mb-6 text-center">About</h2>
+        <div className="text-white font-['Times_New_Roman'] italic text-lg text-center space-y-4">
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">About</span>
+            <span>This is placeholder about information. Replace with your own about details as needed.</span>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">Location</span>
+            <span>New York City</span>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">Instagram</span>
+            <a href="https://instagram.com/reaganmatthew" target="_blank" rel="noopener noreferrer" className="underline">@reaganmatthew</a>
+          </div>
+          <div>
+            <span className="block text-[#AAAAAA] text-sm">LinkedIn</span>
+            <a href="https://linkedin.com/in/reaganmatthew" target="_blank" rel="noopener noreferrer" className="underline">reaganmatthew</a>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
+const DirectorsReelPanel = ({ onClose }: { onClose: () => void }) => (
+  <>
+    <motion.button
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
+      className="absolute top-[91px] right-[19px] z-[100] text-white font-['Times_New_Roman'] italic text-[0.64rem] underline hover:opacity-80 transition-all duration-300"
+      onClick={onClose}
+    >
+      BACK →
+    </motion.button>
+    {/* Frame with exact 15px margins and stronger blur */}
+    <div className="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
+      <div 
+        className="w-[calc(100vw-30px)] h-[calc(100vh-30px)] m-[15px] overflow-hidden border border-white/30" 
+        style={{
+          filter: 'blur(30px)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)',
+          backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        }}
+      ></div>
+    </div>
+    {/* Video container with exact 15px margins */}
+    <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+      <video
+        src="/videos/220312_Florence 16mm_01.mov"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-[calc(100vw-30px)] h-[calc(100vh-30px)] object-cover m-[15px] bg-black"
+        style={{borderRadius: 0, transform: 'scale(1.01)'}}
+      />
+    </div>
+  </>
+);
+
 export default function Navigation() {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -21,6 +157,7 @@ export default function Navigation() {
   const wordmarkRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,9 +225,7 @@ export default function Navigation() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsMenuOpen(false);
-        setIsConnectPage(false);
-        setIsReelPage(false);
-        setIsAboutPage(false);
+        setIsExpanded(false);
         window.dispatchEvent(new CustomEvent('menuStateChange', { 
           detail: { 
             isMenuOpen: false,
@@ -104,12 +239,25 @@ export default function Navigation() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    // Update menu state based on current path
+    // Dispatch menu state change event
+    const event = new CustomEvent('menuStateChange', {
+      detail: {
+        isMenuOpen,
+        isExpanded,
+      }
+    });
+    window.dispatchEvent(event);
+  }, [isMenuOpen, isExpanded, pathname]);
+
   const handleMenuClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (isReelPage) {
       setIsReelPage(false);
       setIsMenuOpen(true);
+      setIsExpanded(false);
       window.dispatchEvent(new CustomEvent('menuStateChange', { 
         detail: { 
           isMenuOpen: true,
@@ -122,6 +270,7 @@ export default function Navigation() {
       setIsConnectPage(false);
       setIsReelPage(false);
       setIsAboutPage(false);
+      setIsExpanded(false);
       window.dispatchEvent(new CustomEvent('menuStateChange', { 
         detail: { 
           isMenuOpen: newMenuState,
@@ -133,33 +282,14 @@ export default function Navigation() {
 
   const handleLinkClick = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
-    if (path === '/projects/art-collection') {
-      setIsConnectPage(true);
-      setIsMenuOpen(true);
-      window.dispatchEvent(new CustomEvent('menuStateChange', { 
-        detail: { 
-          isMenuOpen: true,
-          isExpanded: true
-        }
-      }));
-    } else if (path === '/reel') {
+    if (path === '/reel') {
       setIsReelPage(true);
       setIsMenuOpen(true);
+      setIsExpanded(true);
       window.dispatchEvent(new CustomEvent('menuStateChange', { 
         detail: { 
           isMenuOpen: true,
           isExpanded: true
-        }
-      }));
-    } else if (path === '/about') {
-      setIsAboutPage(true);
-      setIsMenuOpen(true);
-      // Dispatch event to move hero grid
-      window.dispatchEvent(new CustomEvent('menuStateChange', { 
-        detail: { 
-          isMenuOpen: true,
-          isExpanded: true,
-          isAboutPage: true
         }
       }));
     } else {
@@ -167,6 +297,7 @@ export default function Navigation() {
       setIsReelPage(false);
       setIsAboutPage(false);
       setIsMenuOpen(false);
+      setIsExpanded(false);
       window.location.href = path;
     }
   };
@@ -177,12 +308,11 @@ export default function Navigation() {
     setIsReelPage(false);
     setIsAboutPage(false);
     setIsMenuOpen(true);
-    // Dispatch event to reset hero grid
+    setIsExpanded(false);
     window.dispatchEvent(new CustomEvent('menuStateChange', { 
       detail: { 
         isMenuOpen: true,
-        isExpanded: false,
-        isAboutPage: false
+        isExpanded: false
       }
     }));
   };
@@ -194,7 +324,7 @@ export default function Navigation() {
         setIsConnectPage(false);
         setIsReelPage(false);
         setIsAboutPage(false);
-        // Dispatch event to reset hero grid
+        setIsExpanded(false);
         window.dispatchEvent(new CustomEvent('menuStateChange', { 
           detail: { 
             isMenuOpen: false,
@@ -212,6 +342,13 @@ export default function Navigation() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMenuOpen]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleReelPanelClose = () => handleExit({ preventDefault: () => {} } as React.MouseEvent);
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 ${isHomePage ? 'bg-[#F0F0EE]' : 'bg-white'}`}>
@@ -326,7 +463,7 @@ export default function Navigation() {
       {/* Sliding Menu - Now used for both mobile and desktop */}
       <div 
         ref={menuRef}
-        className={`fixed top-0 right-0 h-full transform transition-all duration-500 ease-in-out z-40 ${
+        className={`fixed top-0 right-0 h-full transform transition-all duration-500 ease-linear z-40 ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } ${isConnectPage || isReelPage || isAboutPage ? 'w-full' : 'w-[121.5px]'} ${
           isReelPage || isAboutPage ? 'bg-[#1A1A1A]' : isConnectPage ? 'bg-[#A09583]' : 'bg-[#FA3820]'
@@ -334,15 +471,6 @@ export default function Navigation() {
       >
         {/* Fixed elements that don't move */}
         <div className="absolute top-[79px] right-[14px] z-50">
-          {isAboutPage && (
-            <Link 
-              href="#" 
-              className="text-white font-['Times_New_Roman'] italic text-[8px] tracking-widest hover:opacity-80 transition-all duration-300 text-right"
-              onClick={handleExit}
-            >
-              BACK →
-            </Link>
-          )}
         </div>
         <div className="absolute bottom-5 right-4 z-50">
           <div className="-mr-[10px]">
@@ -357,138 +485,89 @@ export default function Navigation() {
           </div>
         </div>
 
+        {/* Slide-out panels for Connect and About */}
+        <AnimatePresence>
+          {isConnectPage && <ConnectPanel onClose={() => { setIsConnectPage(false); setIsExpanded(false); }} />}
+          {isAboutPage && <AboutPanel onClose={() => { setIsAboutPage(false); setIsExpanded(false); }} />}
+          {isReelPage && <DirectorsReelPanel onClose={() => { setIsReelPage(false); setIsExpanded(false); }} />}
+        </AnimatePresence>
+
         {/* Sliding content */}
-        <div className={`flex flex-col justify-between h-full pr-4 transition-transform duration-500 ease-in-out ${
-          isAboutPage ? '-translate-x-[486px]' : 'translate-x-0'
-        }`}>
+        <div className={`flex flex-col justify-between h-full pr-4 transition-transform duration-500 ease-linear
+          ${isConnectPage || isReelPage || isAboutPage ? '-translate-x-[486px]' : 'translate-x-0'}
+        `}>
           {/* Navigation Links */}
-          <div className={`flex flex-col space-y-8 pt-[88px] ${isConnectPage || isReelPage || isAboutPage ? 'items-end md:pr-4' : 'items-end'}`}>
+          <div className={`flex flex-col space-y-8 pt-[90px] ${isConnectPage || isReelPage || isAboutPage ? 'items-end md:pr-4' : 'items-end'}`}>
             <div className={`flex flex-col space-y-8 transition-all duration-500 ${isConnectPage || isReelPage || isAboutPage ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'}`}>
-              <Link 
-                href="/about" 
-                className="text-white font-degular font-medium text-[10px] tracking-widest hover:opacity-80 transition-opacity duration-200 text-right"
-                onClick={(e) => handleLinkClick(e, '/about')}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
               >
-                ABOUT
-              </Link>
-              <Link 
-                href="/archive" 
-                className="text-white font-degular font-medium text-[10px] tracking-widest hover:opacity-80 transition-opacity duration-200 text-right"
-                onClick={(e) => handleLinkClick(e, '/archive')}
+                <Link
+                  href="#"
+                  className="text-white font-degular font-medium text-[9.5px] tracking-widest hover:opacity-80 transition-all duration-500 ease-in-out text-right"
+                  onClick={e => {
+                    e.preventDefault();
+                    setIsAboutPage(true);
+                    setIsConnectPage(false);
+                    setIsReelPage(false);
+                    setIsMenuOpen(true);
+                    setIsExpanded(true);
+                  }}
+                >
+                  ABOUT
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
               >
-                ARCHIVE
-              </Link>
-              <Link 
-                href="/projects/art-collection" 
-                className="text-white font-degular font-medium text-[10px] tracking-widest hover:opacity-80 transition-opacity duration-200 text-right"
-                onClick={(e) => handleLinkClick(e, '/projects/art-collection')}
+                <Link 
+                  href="#" 
+                  className="text-white font-degular font-medium text-[9.5px] tracking-widest hover:opacity-80 transition-all duration-500 ease-in-out text-right"
+                  onClick={(e) => { e.preventDefault(); setIsConnectPage(true); setIsMenuOpen(true); setIsExpanded(true); }}
+                >
+                  CONNECT
+                </Link>
+              </motion.div>
+              {!isConnectPage && !isAboutPage && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
+                >
+                  <Link 
+                    href="/reel" 
+                    className={`font-degular font-medium text-[9.5px] tracking-widest transition-all duration-500 text-right min-w-[60px] ${
+                      isReelPage ? 'text-[#AAAAAA] font-["Times_New_Roman"] italic font-bold absolute top-[33px] right-[14px]' : 'text-white hover:opacity-80'
+                    }`}
+                    onClick={(e) => isReelPage ? handleExit(e) : handleLinkClick(e, '/reel')}
+                  >
+                    <span className="block leading-[1.05]">DIRECTOR'S</span>
+                    <span className="block leading-[1.05]">REEL</span>
+                  </Link>
+                </motion.div>
+              )}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, delay: 0.15, ease: 'easeInOut' }}
               >
-                CONNECT
-              </Link>
+                <Link 
+                  href="/archive" 
+                  className="text-white font-degular font-medium text-[9.5px] tracking-widest hover:opacity-80 transition-all duration-500 ease-in-out text-right"
+                  onClick={(e) => handleLinkClick(e, '/archive')}
+                >
+                  ARCHIVE
+                </Link>
+              </motion.div>
             </div>
-            {!isConnectPage && !isAboutPage && (
-              <Link 
-                href="/reel" 
-                className={`font-degular font-medium text-[10px] tracking-widest transition-all duration-500 text-right min-w-[60px] ${
-                  isReelPage ? 'text-[#AAAAAA] font-["Times_New_Roman"] italic font-bold absolute top-[33px] right-[14px]' : 'text-white hover:opacity-80'
-                }`}
-                onClick={(e) => isReelPage ? handleExit(e) : handleLinkClick(e, '/reel')}
-              >
-                {isReelPage ? '' : 'EXPLORE REEL'}
-              </Link>
-            )}
-            {isConnectPage && (
-              <>
-              <Link 
-                href="#" 
-                className="text-black font-['Times_New_Roman'] italic text-[8px] tracking-widest hover:opacity-80 transition-opacity duration-200 text-right absolute top-[33px] right-[14px]"
-                onClick={handleExit}
-              >
-                BACK →
-              </Link>
-                <div className="absolute top-[calc(50%-20px)] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[95vw] px-2">
-                  <div className="max-w-2xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center place-items-center">
-                      {/* Contact Information */}
-                      <div className="space-y-6 flex flex-col items-center">
-                        <h2 className="text-white font-degular font-medium text-lg">Contact</h2>
-                        <div className="space-y-4">
-                          <a href="mailto:hello@reaganmatthew.com" className="block text-white hover:opacity-80 transition-opacity duration-200">
-                            <span className="text-[#AAAAAA] text-sm">Email</span>
-                            <p className="font-['Times_New_Roman'] italic">hello@reaganmatthew.com</p>
-                          </a>
-                          <div className="text-white">
-                            <span className="text-[#AAAAAA] text-sm">Location</span>
-                            <p className="font-['Times_New_Roman'] italic">New York City</p>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Social Links */}
-                      <div className="space-y-6 flex flex-col items-center">
-                        <h2 className="text-white font-degular font-medium text-lg">Social</h2>
-                        <div className="space-y-4">
-                          <a href="https://instagram.com/reaganmatthew" target="_blank" rel="noopener noreferrer" className="block text-white hover:opacity-80 transition-opacity duration-200">
-                            <span className="text-[#AAAAAA] text-sm">Instagram</span>
-                            <p className="font-['Times_New_Roman'] italic">@reaganmatthew</p>
-                          </a>
-                          <a href="https://linkedin.com/in/reaganmatthew" target="_blank" rel="noopener noreferrer" className="block text-white hover:opacity-80 transition-opacity duration-200">
-                            <span className="text-[#AAAAAA] text-sm">LinkedIn</span>
-                            <p className="font-['Times_New_Roman'] italic">reaganmatthew</p>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-            {isReelPage && (
-              <>
-                <Link 
-                  href="#" 
-                  className="text-white font-['Times_New_Roman'] italic text-[8px] tracking-widest hover:opacity-80 transition-all duration-300 text-right absolute top-[56px] right-[14px] z-[100]"
-                  onClick={handleExit}
-                >
-                  BACK →
-                </Link>
-                {/* Frame with exact 15px margins and stronger blur */}
-                <div className="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
-                  <div 
-                    className="w-[calc(100vw-30px)] h-[calc(100vh-30px)] m-[15px] overflow-hidden border border-white/30" 
-                    style={{
-                      filter: 'blur(30px)',
-                      backdropFilter: 'blur(30px)',
-                      WebkitBackdropFilter: 'blur(30px)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                    }}
-                  ></div>
-                </div>
-                {/* Video container with exact 15px margins */}
-                <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-                  <video
-                    src="/videos/220312_Florence 16mm_01.mov"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-[calc(100vw-30px)] h-[calc(100vh-30px)] object-cover m-[15px] bg-black"
-                    style={{borderRadius: 0, transform: 'scale(1.01)'}}
-                  />
-                </div>
-              </>
-            )}
-            {isAboutPage && (
-              <>
-                <Link 
-                  href="#" 
-                  className="text-white font-['Times_New_Roman'] italic text-[8px] tracking-widest hover:opacity-80 transition-all duration-300 text-right absolute top-[56px] right-[14px]"
-                  onClick={handleExit}
-                >
-                  BACK →
-                </Link>
-                {/* No other BACK button should be present in the About slide-out */}
-              </>
-            )}
           </div>
         </div>
       </div>

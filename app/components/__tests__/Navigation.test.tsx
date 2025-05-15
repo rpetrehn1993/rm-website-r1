@@ -4,43 +4,20 @@ import Navigation from '@/app/components/Navigation';
 import { testAccessibility } from '@/app/test-utils';
 
 describe('Navigation', () => {
-  const mockOnThemeToggle = jest.fn();
-
-  beforeEach(() => {
-    mockOnThemeToggle.mockClear();
-  });
-
   it('should have no accessibility violations', async () => {
-    await testAccessibility(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    await testAccessibility(<Navigation />);
   });
 
   it('renders navigation links correctly', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
-    expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /work/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /archive/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /connect/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
   });
 
-  it('renders theme toggle button', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
-    
-    const themeToggle = screen.getByRole('button', { name: /theme/i });
-    expect(themeToggle).toBeInTheDocument();
-  });
-
-  it('calls onThemeToggle when theme button is clicked', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
-    
-    const themeToggle = screen.getByRole('button', { name: /theme/i });
-    fireEvent.click(themeToggle);
-    
-    expect(mockOnThemeToggle).toHaveBeenCalled();
-  });
-
   it('shows mobile menu on small screens', async () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
     // Set viewport to mobile size
     window.innerWidth = 375;
@@ -61,16 +38,16 @@ describe('Navigation', () => {
   });
 
   it('handles active link state', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
-    const homeLink = screen.getByRole('link', { name: /home/i });
-    fireEvent.click(homeLink);
+    const archiveLink = screen.getByRole('link', { name: /archive/i });
+    fireEvent.click(archiveLink);
     
-    expect(homeLink).toHaveClass('text-primary');
+    expect(archiveLink).toHaveClass('text-primary');
   });
 
   it('applies backdrop blur on scroll', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
     const nav = screen.getByRole('navigation');
     expect(nav).not.toHaveClass('backdrop-blur-md');
@@ -83,20 +60,20 @@ describe('Navigation', () => {
   });
 
   it('handles keyboard navigation', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
-    const themeToggle = screen.getByRole('button', { name: /theme/i });
-    themeToggle.focus();
+    const menuButton = screen.getByRole('button', { name: /menu/i });
+    menuButton.focus();
     
-    fireEvent.keyDown(themeToggle, { key: 'Enter' });
-    expect(mockOnThemeToggle).toHaveBeenCalled();
+    fireEvent.keyDown(menuButton, { key: 'Enter' });
+    expect(screen.getByRole('navigation')).toHaveClass('translate-x-0');
     
-    fireEvent.keyDown(themeToggle, { key: ' ' });
-    expect(mockOnThemeToggle).toHaveBeenCalledTimes(2);
+    fireEvent.keyDown(menuButton, { key: ' ' });
+    expect(screen.getByRole('navigation')).toHaveClass('-translate-x-full');
   });
 
   it('applies dark mode styles', () => {
-    render(<Navigation onThemeToggle={mockOnThemeToggle} />);
+    render(<Navigation />);
     
     const nav = screen.getByRole('navigation');
     expect(nav).toHaveClass('dark:bg-gray-900/80');

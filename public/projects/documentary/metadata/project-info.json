@@ -1,0 +1,50 @@
+{
+  "title": "Documentary Project",
+  "description": "A deep dive into contemporary storytelling",
+  "year": "2024",
+  "category": "Documentary",
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/main.jpg",
+        "alt": "Documentary Project Main Image",
+        "type": "image",
+        "format": "jpg"
+      },
+      "hover": {
+        "type": "video",
+        "assets": [
+          {
+            "path": "hero/hover/video.mp4",
+            "alt": "Documentary Project Hover Video",
+            "type": "video",
+            "format": "mp4"
+          },
+          {
+            "path": "hero/hover/video.webm",
+            "alt": "Documentary Project Hover Video (WebM)",
+            "type": "video",
+            "format": "webm"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/image1.jpg",
+          "alt": "Documentary Scene 1",
+          "type": "image",
+          "format": "jpg"
+        },
+        {
+          "path": "content/images/image2.jpg",
+          "alt": "Documentary Scene 2",
+          "type": "image",
+          "format": "jpg"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+} 

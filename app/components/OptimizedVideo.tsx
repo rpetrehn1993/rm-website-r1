@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { analytics } from '@/lib/analytics';
 
 interface OptimizedVideoProps {
@@ -11,6 +11,7 @@ interface OptimizedVideoProps {
   loop?: boolean;
   muted?: boolean;
   controls?: boolean;
+  onError?: () => void;
 }
 
 export function OptimizedVideo({
@@ -21,13 +22,21 @@ export function OptimizedVideo({
   loop = false,
   muted = false,
   controls = true,
+  onError,
 }: OptimizedVideoProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [src]);
+
   const handleError = () => {
     setHasError(true);
+    onError?.();
     analytics.trackEvent({
       name: 'error',
       properties: {
@@ -39,6 +48,12 @@ export function OptimizedVideo({
 
   const handleLoadedData = () => {
     setIsLoading(false);
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error('Error playing video:', error);
+        handleError();
+      });
+    }
   };
 
   if (hasError) {
@@ -68,6 +83,7 @@ export function OptimizedVideo({
         onError={handleError}
         onLoadedData={handleLoadedData}
         playsInline
+        preload="auto"
       />
     </div>
   );

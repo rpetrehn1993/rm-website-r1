@@ -78,21 +78,6 @@ test.describe('Visual Regression Tests', () => {
     await expect(page).toHaveScreenshot('work-page-mobile.png');
   });
 
-  test('Responsive Layout - About Page', async ({ page }) => {
-    // Test desktop layout
-    await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto('/about');
-    await expect(page).toHaveScreenshot('about-page-desktop.png');
-    
-    // Test tablet layout
-    await page.setViewportSize({ width: 768, height: 1024 });
-    await expect(page).toHaveScreenshot('about-page-tablet.png');
-    
-    // Test mobile layout
-    await page.setViewportSize({ width: 375, height: 667 });
-    await expect(page).toHaveScreenshot('about-page-mobile.png');
-  });
-
   test('Responsive Layout - Contact Page', async ({ page }) => {
     // Test desktop layout
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -104,6 +89,51 @@ test.describe('Visual Regression Tests', () => {
     await expect(page).toHaveScreenshot('contact-page-tablet.png');
     
     // Test mobile layout
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(page).toHaveScreenshot('contact-page-mobile.png');
+  });
+
+  test('Responsive Layout - Home Page', async ({ page }) => {
+    // Desktop
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await expect(page).toHaveScreenshot('home-page-desktop.png');
+
+    // Tablet
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await expect(page).toHaveScreenshot('home-page-tablet.png');
+
+    // Mobile
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(page).toHaveScreenshot('home-page-mobile.png');
+  });
+
+  test('Responsive Layout - Archive Page', async ({ page }) => {
+    // Desktop
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/archive');
+    await expect(page).toHaveScreenshot('archive-page-desktop.png');
+
+    // Tablet
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await expect(page).toHaveScreenshot('archive-page-tablet.png');
+
+    // Mobile
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(page).toHaveScreenshot('archive-page-mobile.png');
+  });
+
+  test('Responsive Layout - Contact Page', async ({ page }) => {
+    // Desktop
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/contact');
+    await expect(page).toHaveScreenshot('contact-page-desktop.png');
+
+    // Tablet
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await expect(page).toHaveScreenshot('contact-page-tablet.png');
+
+    // Mobile
     await page.setViewportSize({ width: 375, height: 667 });
     await expect(page).toHaveScreenshot('contact-page-mobile.png');
   });

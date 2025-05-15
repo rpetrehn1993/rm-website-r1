@@ -1,0 +1,126 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Color Usage Guidelines
+
+## Style Guide Reference
+This rule is a subset of the main style guide located at `.cursor/rules/STYLE_GUIDE.md`. Always refer to the main style guide for the most up-to-date color definitions and usage guidelines.
+
+## Color Palette Updates
+When the style guide is updated:
+1. This rule will automatically reflect the new color definitions
+2. All new code should use the updated colors
+3. Existing code should be updated to match the new style guide
+4. Document any color changes in commit messages
+
+## Current Color Palette (as of last style guide update)
+
+### Primary Colors
+- **Black**
+  - Main: `#1E1E1E`
+  - Light: `#333333`
+  - Dark: `#000000`
+
+- **White**
+  - Main: `#FFFFFF`
+  - Off-white: `#F5F5F5`
+  - Warm white: `#FAFAFA`
+
+### Accent Colors
+- **Orange**
+  - Main: `#FF6B00`
+  - Light: `#FF8533`
+  - Dark: `#CC5500`
+
+### UI Colors
+- **Background**
+  - Primary: `#FFFFFF`
+  - Secondary: `#F5F5F5`
+  - Overlay: `rgba(0, 0, 0, 0.5)`
+
+- **Text**
+  - Primary: `#1E1E1E`
+  - Secondary: `#666666`
+  - Muted: `#999999`
+
+## Usage Rules
+
+1. **Always reference the style guide**
+   - Check `.cursor/rules/STYLE_GUIDE.md` for the latest color definitions
+   - Use the exact hex codes from the style guide
+   - Never use color names directly
+
+2. **Use Tailwind classes when possible**
+   - ❌ `className="text-black"`
+   - ✅ `className="text-[#1E1E1E]"`
+
+3. **Use CSS variables for dynamic colors**
+   ```css
+   :root {
+     --color-primary: #1E1E1E;
+     --color-secondary: #666666;
+     --color-accent: #FF6B00;
+   }
+   ```
+
+4. **Document color changes**
+   - Add comments explaining color choices
+   - Update the style guide when adding new colors
+   - Note any color variations or combinations
+
+## Examples
+
+```tsx
+// Good Example
+const Button = () => (
+  <button className="bg-[#1E1E1E] text-[#FFFFFF] hover:bg-[#333333]">
+    Click me
+  </button>
+);
+
+// Bad Example
+const Button = () => (
+  <button className="bg-black text-white hover:bg-gray-800">
+    Click me
+  </button>
+);
+```
+
+## Color Accessibility
+
+1. **Contrast Ratios**
+   - Text: 4.5:1 minimum
+   - Large text: 3:1 minimum
+   - UI components: 3:1 minimum
+
+2. **Color Combinations**
+   - Test all color combinations for accessibility
+   - Use tools like WebAIM Contrast Checker
+   - Consider color blindness
+
+3. **Dark Mode**
+   - Maintain contrast ratios in dark mode
+   - Use appropriate color adjustments
+   - Test all color combinations
+
+## Style Guide Updates Process
+
+1. **When updating colors:**
+   - Update the main style guide first
+   - Update this rule to reflect changes
+   - Create a migration plan for existing code
+   - Document the changes in commit messages
+
+2. **Migration steps:**
+   - Identify all instances of old colors
+   - Update components systematically
+   - Test for visual consistency
+   - Verify accessibility standards
+
+3. **Documentation:**
+   - Note the date of style guide updates
+   - List all color changes
+   - Document any new color combinations
+   - Update accessibility guidelines if needed

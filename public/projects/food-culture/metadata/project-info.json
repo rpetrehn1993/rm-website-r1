@@ -1,0 +1,76 @@
+{
+  "title": "Food Culture",
+  "description": "Exploring the intersection of food, culture, and community",
+  "year": "2024",
+  "category": "Video",
+  "layout": {
+    "hero": {
+      "type": "full",
+      "height": "full"
+    },
+    "content": {
+      "blocks": [
+        {
+          "type": "text",
+          "content": "A visual journey through diverse culinary traditions and their impact on communities",
+          "title": "Project Overview",
+          "layout": "full",
+          "textAlignment": "center"
+        },
+        {
+          "type": "video",
+          "title": "Preview",
+          "layout": "full",
+          "assets": [
+            {
+              "path": "hero/hover/video.mp4",
+              "alt": "Food Culture Preview",
+              "type": "video",
+              "format": "mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/hero-9-visual-narrative-storytelling-2024.svg",
+        "alt": "Food Culture Main Image",
+        "type": "image",
+        "format": "svg",
+        "title": "Food Culture",
+        "caption": "Exploring culinary traditions"
+      },
+      "hover": {
+        "type": "video",
+        "assets": [
+          {
+            "path": "hero/hover/video.mp4",
+            "alt": "Food Culture Preview Video",
+            "type": "video",
+            "format": "mp4"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/food-1.jpg",
+          "alt": "Food Culture Image 1",
+          "type": "image",
+          "format": "jpg"
+        },
+        {
+          "path": "content/images/food-2.jpg",
+          "alt": "Food Culture Image 2",
+          "type": "image",
+          "format": "jpg"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+} 

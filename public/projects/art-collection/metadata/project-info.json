@@ -1,0 +1,113 @@
+{
+  "title": "Art Collection Exhibition",
+  "description": "A curated exploration of contemporary art pieces and their cultural significance",
+  "year": "2024",
+  "category": "Exhibition",
+  "layout": {
+    "hero": {
+      "type": "full",
+      "height": "full"
+    },
+    "content": {
+      "blocks": [
+        {
+          "type": "text",
+          "content": "The Art Collection Exhibition represents a groundbreaking exploration of contemporary art, bringing together works from emerging and established artists.",
+          "title": "Introduction",
+          "layout": "full",
+          "textAlignment": "center",
+          "padding": {
+            "top": 80,
+            "bottom": 80
+          }
+        },
+        {
+          "type": "gallery",
+          "title": "Featured Works",
+          "layout": "grid",
+          "assets": [
+            {
+              "path": "content/images/gallery-1.jpg",
+              "alt": "Contemporary Art Piece 1",
+              "type": "image",
+              "format": "jpg",
+              "title": "Ethereal Forms",
+              "caption": "Mixed media installation exploring the boundaries of perception"
+            },
+            {
+              "path": "content/images/gallery-2.jpg",
+              "alt": "Contemporary Art Piece 2",
+              "type": "image",
+              "format": "jpg",
+              "title": "Urban Reflections",
+              "caption": "Photographic series examining city life"
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "content": "Art is not what you see, but what you make others see.",
+          "subtitle": "Edgar Degas",
+          "layout": "full",
+          "backgroundColor": "#f5f5f5",
+          "padding": {
+            "top": 60,
+            "bottom": 60
+          }
+        }
+      ],
+      "maxWidth": 1200,
+      "spacing": 40
+    }
+  },
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/main.jpg",
+        "alt": "Art Collection Exhibition Main Image",
+        "type": "image",
+        "format": "jpg",
+        "title": "Exhibition Overview",
+        "caption": "The main gallery space showcasing the exhibition"
+      },
+      "hover": {
+        "type": "video",
+        "assets": [
+          {
+            "path": "hero/hover/video.mp4",
+            "alt": "Art Collection Exhibition Hover Video",
+            "type": "video",
+            "format": "mp4"
+          },
+          {
+            "path": "hero/hover/video.webm",
+            "alt": "Art Collection Exhibition Hover Video (WebM)",
+            "type": "video",
+            "format": "webm"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/gallery-1.jpg",
+          "alt": "Art Collection Gallery View 1",
+          "type": "image",
+          "format": "jpg",
+          "title": "Gallery View 1",
+          "caption": "First gallery space overview"
+        },
+        {
+          "path": "content/images/gallery-2.jpg",
+          "alt": "Art Collection Gallery View 2",
+          "type": "image",
+          "format": "jpg",
+          "title": "Gallery View 2",
+          "caption": "Second gallery space overview"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+} 

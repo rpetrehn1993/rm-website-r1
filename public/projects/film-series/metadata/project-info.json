@@ -1,0 +1,133 @@
+{
+  "title": "Film Series",
+  "description": "A collection of cinematic explorations through 16mm film",
+  "year": "2024",
+  "category": "Film",
+  "layout": {
+    "hero": {
+      "type": "full",
+      "height": "full"
+    },
+    "content": {
+      "blocks": [
+        {
+          "type": "text",
+          "content": "Capturing moments in time through the unique perspective of 16mm film",
+          "title": "Project Overview",
+          "layout": "full",
+          "textAlignment": "center"
+        },
+        {
+          "type": "gallery",
+          "title": "Florence Series",
+          "layout": "grid",
+          "assets": [
+            {
+              "path": "content/videos/220312_Florence 16mm_01.mov",
+              "alt": "Florence 16mm Film 1",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 1",
+              "caption": "First part of the Florence series"
+            },
+            {
+              "path": "content/videos/220312_Florence 16mm_02.mov",
+              "alt": "Florence 16mm Film 2",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 2",
+              "caption": "Second part of the Florence series"
+            },
+            {
+              "path": "content/videos/220312_Florence 16mm_03.mov",
+              "alt": "Florence 16mm Film 3",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 3",
+              "caption": "Third part of the Florence series"
+            },
+            {
+              "path": "content/videos/220312_Florence 16mm_04.mov",
+              "alt": "Florence 16mm Film 4",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 4",
+              "caption": "Fourth part of the Florence series"
+            },
+            {
+              "path": "content/videos/220312_Florence 16mm_05.mov",
+              "alt": "Florence 16mm Film 5",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 5",
+              "caption": "Fifth part of the Florence series"
+            },
+            {
+              "path": "content/videos/220312_Florence 16mm_06.mov",
+              "alt": "Florence 16mm Film 6",
+              "type": "video",
+              "format": "mov",
+              "title": "Florence 16mm - Part 6",
+              "caption": "Sixth part of the Florence series"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "title": "Director's Reel",
+          "layout": "full",
+          "assets": [
+            {
+              "path": "content/videos/directors-reel.mov",
+              "alt": "Director's Reel",
+              "type": "video",
+              "format": "mov",
+              "title": "Director's Reel 2024",
+              "caption": "A collection of recent work"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "assets": {
+    "hero": {
+      "main": {
+        "path": "hero/main/hero-7-film-series-production-2023.svg",
+        "alt": "Film Series Main Image",
+        "type": "image",
+        "format": "svg",
+        "title": "Film Series",
+        "caption": "16mm film exploration"
+      },
+      "hover": {
+        "type": "video",
+        "assets": [
+          {
+            "path": "hero/hover/video.mp4",
+            "alt": "Film Series Preview",
+            "type": "video",
+            "format": "mp4"
+          }
+        ]
+      }
+    },
+    "content": {
+      "images": [
+        {
+          "path": "content/images/film-1.jpg",
+          "alt": "Film Production Scene 1",
+          "type": "image",
+          "format": "jpg"
+        },
+        {
+          "path": "content/images/film-2.jpg",
+          "alt": "Film Production Scene 2",
+          "type": "image",
+          "format": "jpg"
+        }
+      ],
+      "copy": "content/copy/project-description.md"
+    }
+  }
+}

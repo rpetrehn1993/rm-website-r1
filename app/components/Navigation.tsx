@@ -132,7 +132,7 @@ const DirectorsReelPanel = ({ onClose }: { onClose: () => void }) => (
     {/* Video container with exact 15px margins */}
     <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
       <video
-        src="/videos/220312_Florence 16mm_01.mov"
+        src="/videos/fallback-video.mp4"
         autoPlay
         loop
         muted

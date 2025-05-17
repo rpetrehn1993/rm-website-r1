@@ -23,7 +23,7 @@
           "layout": "grid",
           "assets": [
             {
-              "path": "content/videos/220312_Florence 16mm_01.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 1",
               "type": "video",
               "format": "mov",
@@ -31,7 +31,7 @@
               "caption": "First part of the Florence series"
             },
             {
-              "path": "content/videos/220312_Florence 16mm_02.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 2",
               "type": "video",
               "format": "mov",
@@ -39,7 +39,7 @@
               "caption": "Second part of the Florence series"
             },
             {
-              "path": "content/videos/220312_Florence 16mm_03.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 3",
               "type": "video",
               "format": "mov",
@@ -47,7 +47,7 @@
               "caption": "Third part of the Florence series"
             },
             {
-              "path": "content/videos/220312_Florence 16mm_04.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 4",
               "type": "video",
               "format": "mov",
@@ -55,7 +55,7 @@
               "caption": "Fourth part of the Florence series"
             },
             {
-              "path": "content/videos/220312_Florence 16mm_05.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 5",
               "type": "video",
               "format": "mov",
@@ -63,7 +63,7 @@
               "caption": "Fifth part of the Florence series"
             },
             {
-              "path": "content/videos/220312_Florence 16mm_06.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Florence 16mm Film 6",
               "type": "video",
               "format": "mov",
@@ -78,7 +78,7 @@
           "layout": "full",
           "assets": [
             {
-              "path": "content/videos/directors-reel.mov",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Director's Reel",
               "type": "video",
               "format": "mov",
@@ -104,7 +104,7 @@
         "type": "video",
         "assets": [
           {
-            "path": "hero/hover/video.mp4",
+            "path": "/videos/fallback-video.mp4",
             "alt": "Film Series Preview",
             "type": "video",
             "format": "mp4"

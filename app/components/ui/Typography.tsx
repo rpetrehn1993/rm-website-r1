@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { ReactNode, ElementType } from 'react';
 import { cn } from '@/lib/utils';
 
-interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
-  as?: keyof JSX.IntrinsicElements;
+interface TypographyProps {
+  as?: ElementType;
   variant?: 'h1' | 'h2' | 'h3' | 'body' | 'small' | 'quote';
+  className?: string;
+  children: ReactNode;
+  [key: string]: any; // Allow any other props
 }
 
 const variantStyles = {
@@ -33,16 +36,16 @@ export function Typography({
 }: TypographyProps) {
   const Component = as || defaultElements[variant];
   
-  return (
-    <Component
-      className={cn(
+  return React.createElement(
+    Component,
+    {
+      className: cn(
         variantStyles[variant],
         'text-[#1E1E1E]',
         className
-      )}
-      {...props}
-    >
-      {children}
-    </Component>
+      ),
+      ...props,
+    },
+    children
   );
 } 

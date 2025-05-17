@@ -23,7 +23,7 @@
           "layout": "full",
           "assets": [
             {
-              "path": "hero/hover/video.mp4",
+              "path": "/videos/fallback-video.mp4",
               "alt": "Food Culture Preview",
               "type": "video",
               "format": "mp4"
@@ -47,7 +47,7 @@
         "type": "video",
         "assets": [
           {
-            "path": "hero/hover/video.mp4",
+            "path": "/videos/fallback-video.mp4",
             "alt": "Food Culture Preview Video",
             "type": "video",
             "format": "mp4"

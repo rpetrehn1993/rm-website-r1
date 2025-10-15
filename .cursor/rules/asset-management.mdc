@@ -8,17 +8,17 @@ alwaysApply: true
 ## Asset Types and Locations
 
 ### Images
-- **Hero Images**
-  - Location: `/public/images/heroes/`
-  - Format: WebP with JPEG fallback
-  - Size: 1920x1080px
-  - Naming: `{section}-hero.{ext}`
+- **Project Hero Images**
+  - Location: `/public/projects/{project-name}/hero/main/` and `/public/projects/{project-name}/hero/hover/`
+  - Format: WebP with JPEG fallback, SVG, GIF, MP4
+  - Size: 1920x1080px (main), 1200x800px (hover)
+  - Naming: `{filename}.{ext}` (dynamically loaded via API)
 
-- **Project Images**
-  - Location: `/public/images/projects/`
-  - Format: WebP with JPEG fallback
+- **Project Content Images**
+  - Location: `/public/projects/{project-name}/content/`
+  - Format: WebP with JPEG fallback, SVG, GIF, MP4
   - Size: 1200x800px
-  - Naming: `{project-name}-{type}.{ext}`
+  - Naming: `{filename}.{ext}` (dynamically loaded via API)
 
 - **About Images**
   - Location: `/public/images/about/`

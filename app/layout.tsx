@@ -6,6 +6,7 @@ import { PerformanceMonitor } from './components/PerformanceMonitor'
 import { LegalCompliance } from './components/LegalCompliance'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { Analytics } from './components/Analytics'
+import PageTransition from './components/PageTransition'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,9 +47,11 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <ErrorBoundary>
           <MenuProvider>
-            <main className="min-h-screen bg-white dark:bg-gray-900">
-              {children}
-            </main>
+            <PageTransition>
+              <main className="min-h-screen bg-white dark:bg-gray-900">
+                {children}
+              </main>
+            </PageTransition>
           </MenuProvider>
           <PerformanceMonitor />
           <LegalCompliance />

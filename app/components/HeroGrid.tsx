@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
 
 // Base configuration for projects
 const projects = [
@@ -47,8 +47,8 @@ const getMediaType = (filename: string) => {
   return null;
 };
 
-// Component to render the appropriate media type
-const MediaElement = ({ 
+// Memoized component to render the appropriate media type
+const MediaElement = memo(({ 
   src, 
   alt, 
   className,
@@ -61,7 +61,7 @@ const MediaElement = ({
   onLoad?: () => void;
   onError?: () => void;
 }) => {
-  const mediaType = getMediaType(src);
+  const mediaType = useMemo(() => getMediaType(src), [src]);
 
   if (mediaType === 'video') {
     return (
@@ -90,6 +90,7 @@ const MediaElement = ({
         unoptimized={src.endsWith('.svg')} // Don't optimize SVGs
         onLoad={onLoad}
         onError={onError}
+        loading="lazy"
       />
     );
   }
@@ -104,29 +105,24 @@ const MediaElement = ({
       className={className}
       onLoad={onLoad}
       onError={onError}
+      loading="lazy"
     />
   );
-};
+});
 
-// Fallback image component
-const FallbackImage = ({ className }: { className?: string }) => (
+// Memoized fallback image component
+const FallbackImage = memo(({ className }: { className?: string }) => (
   <div className={`bg-gray-100 flex items-center justify-center ${className}`}>
     <div className="text-gray-400 text-sm">Image not available</div>
   </div>
-);
+));
 
 export default function HeroGrid() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isConnectPage, setIsConnectPage] = useState(false);
   const [isReelPage, setIsReelPage] = useState(false);
   const [isContactPage, setIsContactPage] = useState(false);
-  const [logoScale, setLogoScale] = useState(3.125);
-  const [wordmarkY, setWordmarkY] = useState(50);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const wordmarkRef = useRef<HTMLDivElement>(null);
   const [mainFiles, setMainFiles] = useState<Record<string, string>>({});
   const [hoverFiles, setHoverFiles] = useState<Record<string, string>>({});
   const [loadingStates, setLoadingStates] = useState<Record<string, { main: boolean; hover: boolean }>>({});
@@ -187,23 +183,23 @@ export default function HeroGrid() {
     fetchLatestFiles();
   }, []);
 
-  // Handle media load events
-  const handleMainLoad = (projectId: string) => {
+  // Memoized media load handlers
+  const handleMainLoad = useCallback((projectId: string) => {
     setLoadingStates(prev => ({
       ...prev,
       [projectId]: { ...prev[projectId], main: false }
     }));
-  };
+  }, []);
 
-  const handleHoverLoad = (projectId: string) => {
+  const handleHoverLoad = useCallback((projectId: string) => {
     setLoadingStates(prev => ({
       ...prev,
       [projectId]: { ...prev[projectId], hover: false }
     }));
-  };
+  }, []);
 
-  // Handle media error events
-  const handleMainError = (projectId: string) => {
+  // Memoized media error handlers
+  const handleMainError = useCallback((projectId: string) => {
     setErrorStates(prev => ({
       ...prev,
       [projectId]: { ...prev[projectId], main: true }
@@ -212,9 +208,9 @@ export default function HeroGrid() {
       ...prev,
       [projectId]: { ...prev[projectId], main: false }
     }));
-  };
+  }, []);
 
-  const handleHoverError = (projectId: string) => {
+  const handleHoverError = useCallback((projectId: string) => {
     setErrorStates(prev => ({
       ...prev,
       [projectId]: { ...prev[projectId], hover: true }
@@ -223,14 +219,19 @@ export default function HeroGrid() {
       ...prev,
       [projectId]: { ...prev[projectId], hover: false }
     }));
-  };
+  }, []);
+
+  // Memoize grid transform calculation
+  const gridTransform = useMemo(() => {
+    if (!isMenuOpen) return 'translate-x-0';
+    if (isConnectPage || isReelPage || isContactPage) return '-translate-x-[729px]';
+    return '-translate-x-[121.5px]';
+  }, [isMenuOpen, isConnectPage, isReelPage, isContactPage]);
 
   return (
     <div className="max-w-[1440px] mx-auto px-4">
       <div 
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out ${
-          isMenuOpen ? (isConnectPage || isReelPage || isContactPage ? '-translate-x-[729px]' : '-translate-x-[121.5px]') : 'translate-x-0'
-        }`}
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-transform duration-500 ease-in-out ${gridTransform}`}
       >
         {projects.map((project) => (
           <Link 

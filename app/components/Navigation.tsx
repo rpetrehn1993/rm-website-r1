@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import VimeoPlayer from './VimeoPlayer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -144,8 +144,19 @@ const DirectorsReelPanel = ({ onClose }: { onClose: () => void }) => (
   </>
 );
 
+// Utility functions for scroll lock and focus management
+const toggleBodyScrollLock = (locked: boolean) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.overflow = locked ? 'hidden' : '';
+    document.body.style.overflow = locked ? 'hidden' : '';
+  }
+};
+
+const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export default function Navigation() {
   const pathname = usePathname();
+  const router = useRouter();
   const isHomePage = pathname === '/';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConnectPage, setIsConnectPage] = useState(false);
@@ -156,8 +167,8 @@ export default function Navigation() {
   const menuRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -220,28 +231,90 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Add keyboard event listener for ESC key
+  // Focus trap functionality
+  const trapFocus = useCallback((e: KeyboardEvent) => {
+    if (!isMenuOpen || !menuRef.current) return;
+
+    const focusableElementsList = Array.from(
+      menuRef.current.querySelectorAll(focusableElements)
+    ) as HTMLElement[];
+
+    if (focusableElementsList.length === 0) return;
+
+    const firstElement = focusableElementsList[0];
+    const lastElement = focusableElementsList[focusableElementsList.length - 1];
+
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  }, [isMenuOpen]);
+
+  // Keyboard event listener for ESC key and focus trap
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsMenuOpen(false);
-        setIsExpanded(false);
-        window.dispatchEvent(new CustomEvent('menuStateChange', { 
-          detail: { 
-            isMenuOpen: false,
-            isExpanded: false
-          }
-        }));
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      } else if (e.key === 'Tab') {
+        trapFocus(e);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMenuOpen, trapFocus]);
+
+  // Centralized menu state management
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+    setIsConnectPage(false);
+    setIsReelPage(false);
+    setIsAboutPage(false);
+    setIsExpanded(false);
+    
+    // Restore focus to previous element
+    if (previousActiveElement.current) {
+      previousActiveElement.current.focus();
+      previousActiveElement.current = null;
+    }
+    
+    // Unlock body scroll
+    toggleBodyScrollLock(false);
   }, []);
 
+  const openMenu = useCallback(() => {
+    // Store current active element
+    previousActiveElement.current = document.activeElement as HTMLElement;
+    
+    setIsMenuOpen(true);
+    setIsConnectPage(false);
+    setIsReelPage(false);
+    setIsAboutPage(false);
+    setIsExpanded(false);
+    
+    // Lock body scroll
+    toggleBodyScrollLock(true);
+  }, []);
+
+  // Handle scroll lock when menu state changes
   useEffect(() => {
-    // Update menu state based on current path
-    // Dispatch menu state change event
+    toggleBodyScrollLock(isMenuOpen);
+    
+    // Dispatch menu state change event for other components
     const event = new CustomEvent('menuStateChange', {
       detail: {
         isMenuOpen,
@@ -249,34 +322,25 @@ export default function Navigation() {
       }
     });
     window.dispatchEvent(event);
-  }, [isMenuOpen, isExpanded, pathname]);
+
+    // Cleanup on unmount
+    return () => {
+      toggleBodyScrollLock(false);
+    };
+  }, [isMenuOpen, isExpanded]);
 
   const handleMenuClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (isReelPage) {
       setIsReelPage(false);
-      setIsMenuOpen(true);
       setIsExpanded(false);
-      window.dispatchEvent(new CustomEvent('menuStateChange', { 
-        detail: { 
-          isMenuOpen: true,
-          isExpanded: false
-        }
-      }));
     } else {
-      const newMenuState = !isMenuOpen;
-      setIsMenuOpen(newMenuState);
-      setIsConnectPage(false);
-      setIsReelPage(false);
-      setIsAboutPage(false);
-      setIsExpanded(false);
-      window.dispatchEvent(new CustomEvent('menuStateChange', { 
-        detail: { 
-          isMenuOpen: newMenuState,
-          isExpanded: false
-        }
-      }));
+      if (isMenuOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     }
   };
 
@@ -284,21 +348,10 @@ export default function Navigation() {
     e.preventDefault();
     if (path === '/reel') {
       setIsReelPage(true);
-      setIsMenuOpen(true);
       setIsExpanded(true);
-      window.dispatchEvent(new CustomEvent('menuStateChange', { 
-        detail: { 
-          isMenuOpen: true,
-          isExpanded: true
-        }
-      }));
     } else {
-      setIsConnectPage(false);
-      setIsReelPage(false);
-      setIsAboutPage(false);
-      setIsMenuOpen(false);
-      setIsExpanded(false);
-      window.location.href = path;
+      closeMenu();
+      router.push(path);
     }
   };
 
@@ -307,30 +360,13 @@ export default function Navigation() {
     setIsConnectPage(false);
     setIsReelPage(false);
     setIsAboutPage(false);
-    setIsMenuOpen(true);
     setIsExpanded(false);
-    window.dispatchEvent(new CustomEvent('menuStateChange', { 
-      detail: { 
-        isMenuOpen: true,
-        isExpanded: false
-      }
-    }));
   };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-        setIsConnectPage(false);
-        setIsReelPage(false);
-        setIsAboutPage(false);
-        setIsExpanded(false);
-        window.dispatchEvent(new CustomEvent('menuStateChange', { 
-          detail: { 
-            isMenuOpen: false,
-            isExpanded: false
-          }
-        }));
+        closeMenu();
       }
     }
 
@@ -341,12 +377,7 @@ export default function Navigation() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isMenuOpen]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setIsExpanded(!isExpanded);
-  };
+  }, [isMenuOpen, closeMenu]);
 
   const handleReelPanelClose = () => handleExit({ preventDefault: () => {} } as React.MouseEvent);
 
@@ -468,6 +499,10 @@ export default function Navigation() {
         } ${isConnectPage || isReelPage || isAboutPage ? 'w-full' : 'w-[121.5px]'} ${
           isReelPage || isAboutPage ? 'bg-[#1A1A1A]' : isConnectPage ? 'bg-[#A09583]' : 'bg-[#FA3820]'
         }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        aria-hidden={!isMenuOpen}
       >
         {/* Fixed elements that don't move */}
         <div className="absolute top-[79px] right-[14px] z-50">
@@ -489,7 +524,7 @@ export default function Navigation() {
         <AnimatePresence>
           {isConnectPage && <ConnectPanel onClose={() => { setIsConnectPage(false); setIsExpanded(false); }} />}
           {isAboutPage && <AboutPanel onClose={() => { setIsAboutPage(false); setIsExpanded(false); }} />}
-          {isReelPage && <DirectorsReelPanel onClose={() => { setIsReelPage(false); setIsExpanded(false); }} />}
+          {isReelPage && <DirectorsReelPanel onClose={handleReelPanelClose} />}
         </AnimatePresence>
 
         {/* Sliding content */}

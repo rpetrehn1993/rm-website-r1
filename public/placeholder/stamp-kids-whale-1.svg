@@ -1,0 +1,24 @@
+<svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="400" fill="#d32d2f" rx="20"/>
+  <text x="150" y="50" font-family="sans-serif" font-size="36" fill="white" text-anchor="middle" font-weight="bold">NEDERLAND</text>
+  <text x="60" y="100" font-family="sans-serif" font-size="48" fill="white" font-weight="bold">6</text>
+  <!-- Whale body -->
+  <ellipse cx="150" cy="220" rx="90" ry="50" fill="white"/>
+  <!-- Whale tail -->
+  <path d="M230 200 Q270 180 250 240 Q260 200 230 220" fill="white"/>
+  <!-- Kids (simple shapes) -->
+  <circle cx="120" cy="170" r="20" fill="white"/>
+  <rect x="110" y="190" width="20" height="30" rx="8" fill="white"/>
+  <circle cx="160" cy="170" r="20" fill="white"/>
+  <rect x="150" y="190" width="20" height="30" rx="8" fill="white"/>
+  <!-- Arms/legs (lines) -->
+  <line x1="120" y1="210" x2="110" y2="230" stroke="#d32d2f" stroke-width="4"/>
+  <line x1="120" y1="210" x2="130" y2="230" stroke="#d32d2f" stroke-width="4"/>
+  <line x1="160" y1="210" x2="150" y2="230" stroke="#d32d2f" stroke-width="4"/>
+  <line x1="160" y1="210" x2="170" y2="230" stroke="#d32d2f" stroke-width="4"/>
+  <!-- Whale eye -->
+  <circle cx="110" cy="220" r="5" fill="#d32d2f"/>
+  <!-- Water waves -->
+  <path d="M60 300 Q80 320 100 300 T140 300 T180 300 T220 300 T260 300" stroke="white" stroke-width="6" fill="none"/>
+  <text x="150" y="370" font-family="sans-serif" font-size="32" fill="white" text-anchor="middle" font-weight="bold">VOOR HET KIND</text>
+</svg> 
